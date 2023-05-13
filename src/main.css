@@ -61,4 +61,23 @@ h6 {
   height: 100%;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+p {
+  margin: 0;
+}
+
+body {
+  font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
+  background-color: #000;
+  color: #fff;
+}
 /* END - CSS Reset */
