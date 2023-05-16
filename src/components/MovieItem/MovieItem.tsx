@@ -22,6 +22,7 @@ interface MovieItemProps {
 
 export const MovieItem: React.FC = () => {
   const movies = useSelector((state: RootState) => state.movieList.movies);
+
   const sectionTitle = useSelector(
     (state: RootState) => state.movieList.sectionTitle
   );
@@ -30,18 +31,18 @@ export const MovieItem: React.FC = () => {
     <>
       <MovieSectionTitle>{sectionTitle.toUpperCase()}</MovieSectionTitle>
       <MovieList>
-        {movies.map((movie: MovieItemProps) => (
-          <MovieListItem key={movie.id}>
-            <MovieLink to="/movie">
+        {movies.map(({ id, title, poster_path, overview }: MovieItemProps) => (
+          <MovieListItem key={id}>
+            <MovieLink to={`movie/${id}`}>
               <MovieImg
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-                width="300"
-                height={Math.round(300 * 1.5)}
+                src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                alt={title}
+                width="200"
+                height="300"
               />
               <div>
-                <MovieTitle>{movie.title}</MovieTitle>
-                <MovieDescription>{movie.overview}</MovieDescription>
+                <MovieTitle>{title}</MovieTitle>
+                <MovieDescription>{overview}</MovieDescription>
               </div>
             </MovieLink>
           </MovieListItem>

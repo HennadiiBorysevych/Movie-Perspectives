@@ -60,6 +60,17 @@ export const popularUpcoming = createAsyncThunk(
     }
   }
 );
+export const movieDetails = createAsyncThunk(
+  "movies/movieDetails",
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const data = await api.get(`movie/${id}`);
+      return data;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
 
 // export const searchMovieById = async id => {
 //     const response = await fetch(
