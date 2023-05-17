@@ -8,12 +8,13 @@ import { AppDispatch, RootState } from "../../redux/store";
 import {
   DetailsWrapper,
   Link,
+  MovieDescription,
   MovieInfo,
-  MovieSection,
+  MoviePoster,
   Wrapper,
 } from "./MovieDetails.styled";
 
-export const MovieDetails = () => {
+export const MovieDetails: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
 
   const movies = useSelector(
@@ -29,30 +30,26 @@ export const MovieDetails = () => {
   }, [dispatch, movieID]);
 
   return (
-    <MovieSection>
+    <>
       <DetailsWrapper>
-        <img
+        <MoviePoster
           src={`https://image.tmdb.org/t/p/w500${movies.poster_path}`}
           alt={movies.title}
-          width="350"
-          height="400"
         />
-        <MovieInfo>
-          <h2>{movies.title}</h2>
-          <p>{movies.overview}</p>
-          <p>Release Date: {movies.release_date}</p>
-          <p> IMDB rating:{movies.vote_average?.toFixed(2)}</p>
-          <p>Box Office: {(movies.revenue / 1000000)?.toFixed(2)}M $</p>
-          <p>Duration: {movies.runtime / 60} hours</p>
-          <p>Original language: {movies.original_language?.toUpperCase()}</p>
-          <p>Slogan: {movies.tagline}</p>
-          <Wrapper>
-            <Link to="cast">Cast</Link>
-            <Link to="reviews">Reviews</Link>
-          </Wrapper>
-        </MovieInfo>
       </DetailsWrapper>
-      <ul>
+      <MovieInfo>
+        <h2>{movies.title}</h2>
+        <MovieDescription>{movies.overview}</MovieDescription>
+        <p>Release Date: {movies.release_date}</p>
+        <p> IMDB rating:{movies.vote_average?.toFixed(2)}</p>
+        <p>Box Office: {(movies.revenue / 1000000)?.toFixed(2)}M $</p>
+        <p>Duration: {movies.runtime / 60} hours</p>
+        <p>Original language: {movies.original_language?.toUpperCase()}</p>
+        <p>Slogan: {movies.tagline}</p>
+        <Wrapper>
+          <Link to="cast">Cast</Link>
+          <Link to="reviews">Reviews</Link>
+        </Wrapper>
         <Suspense
           fallback={
             <ThreeCircles
@@ -65,7 +62,7 @@ export const MovieDetails = () => {
         >
           <Outlet />
         </Suspense>
-      </ul>
-    </MovieSection>
+      </MovieInfo>
+    </>
   );
 };

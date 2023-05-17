@@ -4,6 +4,7 @@ import {
   movieCast,
   movieDetails,
   movieReviews,
+  movieSearch,
   playingNow,
   popularMovies,
   popularTopRated,
@@ -29,6 +30,21 @@ interface MovieDetailsProps {
   tagline: string;
 }
 
+interface MovieReviewsProps {
+  author: string;
+  author_details: {
+    avatar_path: string;
+    name: string;
+    rating: number;
+    username: string;
+  };
+  content: string;
+  created_at: string;
+  id: string;
+  updated_at: string;
+  url: string;
+}
+
 export const movieSlice = createSlice({
   name: "movies",
   initialState: {
@@ -37,7 +53,7 @@ export const movieSlice = createSlice({
     movieDetails: {} as MovieDetailsProps,
     images: [],
     movieCast: [],
-    movieReviews: [],
+    movieReviews: [] as MovieReviewsProps[],
   },
   extraReducers: (builder) => {
     builder.addCase(playingNow.fulfilled, (state, action) => {
@@ -64,6 +80,10 @@ export const movieSlice = createSlice({
     });
     builder.addCase(movieReviews.fulfilled, (state, action) => {
       state.movieReviews = action?.payload?.data?.results;
+    });
+    builder.addCase(movieSearch.fulfilled, (state, action) => {
+      state.movies = action?.payload?.data?.results;
+      state.sectionTitle = "Search Results";
     });
   },
   reducers: {},

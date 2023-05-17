@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -7,7 +7,7 @@ import { AppDispatch, RootState } from "@/redux/store";
 
 import { CastItem, CastList } from "./Cast.styled";
 
-export const Cast = () => {
+export const Cast: React.FC = () => {
   const { movieID } = useParams();
 
   const dispatch: AppDispatch = useDispatch();

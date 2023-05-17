@@ -18,11 +18,13 @@ export const MovieInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
   justify-content: flex-start;
   align-items: left;
   border-radius: 5px;
   background-color: transparent;
   transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  margin-left: 3rem;
 `;
 export const Link = styled(NavLink)`
   transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -47,4 +49,12 @@ export const Wrapper = styled.div`
   margin-top: 1rem;
   margin-bottom: 1rem;
   margin-right: 10rem;
+`;
+export const MoviePoster = styled.img`
+  height: 500px;
+  margin-left: 1rem;
+`;
+
+export const MovieDescription = styled.p`
+  width: 70%;
 `;

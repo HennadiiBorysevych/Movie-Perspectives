@@ -1,23 +1,16 @@
 import { TextField } from "@mui/material";
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { ThreeCircles } from "react-loader-spinner";
 import { useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
 
-import {
-  playingNow,
-  popularMovies,
-  popularTopRated,
-  popularUpcoming,
-} from "../../redux/movieOperations";
+import { movieSearch } from "../../redux/movieOperations";
 import { AppDispatch } from "../../redux/store";
 import {
-  Aside,
   Main,
   MovieHeader,
   MovieHeaderLink,
   MovieImg,
-  MovieLink,
   SearchWrapper,
 } from "./Home.styled";
 import logo from "./logo.svg";
@@ -37,12 +30,20 @@ const inputProps = {
 };
 
 export const Home: React.FC = () => {
+  const [movieSearchFilter, setMovieSearch] = useState<string>("");
+
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(playingNow());
-  }, [dispatch]);
+    if (movieSearchFilter) {
+      dispatch(movieSearch(movieSearchFilter));
+    }
+  }, [dispatch, movieSearchFilter]);
 
+  const handleMovieSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setMovieSearch(value);
+  };
   return (
     <>
       <MovieHeader>
@@ -57,54 +58,13 @@ export const Home: React.FC = () => {
             id="filled-basic"
             label="Movie Search"
             variant="filled"
+            onChange={handleMovieSearch}
           />
         </SearchWrapper>
       </MovieHeader>
       <Main>
-        <Aside>
-          <nav>
-            <ul>
-              <li>
-                <MovieLink type="button" onClick={() => dispatch(playingNow())}>
-                  Now Playing
-                </MovieLink>
-              </li>
-              <li>
-                <MovieLink
-                  type="button"
-                  onClick={() => dispatch(popularMovies())}
-                >
-                  Popular
-                </MovieLink>
-              </li>
-              <li>
-                <MovieLink
-                  type="button"
-                  onClick={() => dispatch(popularTopRated())}
-                >
-                  Top Rated
-                </MovieLink>
-              </li>
-              <li>
-                <MovieLink
-                  type="button"
-                  onClick={() => dispatch(popularUpcoming())}
-                >
-                  Upcoming
-                </MovieLink>
-              </li>
-            </ul>
-          </nav>
-        </Aside>
         <Suspense
-          fallback={
-            <ThreeCircles
-              height="100"
-              width="100"
-              color="#4fa94d"
-              visible={true}
-            />
-          }
+          fallback={<ThreeCircles height="100" width="100" color="#4fa94d" />}
         >
           <Outlet />
         </Suspense>

@@ -22,9 +22,3 @@ export const CastTitle = styled.h2`
   color: #000;
   margin-bottom: 20px;
 `;
-export const ReviewTitle = styled.h3`
-  font-size: 24px;
-  font-weight: 700;
-  color: #000;
-  margin-bottom: 20px;
-`;

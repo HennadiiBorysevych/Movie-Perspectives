@@ -93,3 +93,14 @@ export const movieReviews = createAsyncThunk(
     }
   }
 );
+export const movieSearch = createAsyncThunk(
+  "movies/moviesearch",
+  async (query: string, { rejectWithValue }) => {
+    try {
+      const data = await api.get(`search/movie?query=${query}`);
+      return data;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
