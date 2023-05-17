@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const MovieHeader = styled.header`
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
   background-color: #1c1c1c;
 `;
 
@@ -56,4 +56,9 @@ export const MovieLink = styled.button`
 export const MovieImg = styled.img`
   object-fit: cover;
   background-color: #f5c518;
+`;
+
+export const SearchWrapper = styled.div`
+  width: 500px;
+  height: 55px;
 `;

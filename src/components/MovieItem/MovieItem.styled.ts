@@ -33,7 +33,10 @@ transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
 &:focus {
   transform: scale(1.05);
 }
-
+&.active {
+  transform: scale(1.05);
+  background-color: #f5f5f5;
+}
 `;
 export const MovieTitle = styled.h2`
   width: 300px;

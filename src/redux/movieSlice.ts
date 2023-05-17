@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import {
+  movieCast,
   movieDetails,
+  movieReviews,
   playingNow,
   popularMovies,
   popularTopRated,
@@ -34,6 +36,8 @@ export const movieSlice = createSlice({
     sectionTitle: "",
     movieDetails: {} as MovieDetailsProps,
     images: [],
+    movieCast: [],
+    movieReviews: [],
   },
   extraReducers: (builder) => {
     builder.addCase(playingNow.fulfilled, (state, action) => {
@@ -54,6 +58,12 @@ export const movieSlice = createSlice({
     });
     builder.addCase(movieDetails.fulfilled, (state, action) => {
       state.movieDetails = action?.payload?.data;
+    });
+    builder.addCase(movieCast.fulfilled, (state, action) => {
+      state.movieCast = action?.payload?.data?.cast;
+    });
+    builder.addCase(movieReviews.fulfilled, (state, action) => {
+      state.movieReviews = action?.payload?.data?.results;
     });
   },
   reducers: {},

@@ -71,32 +71,25 @@ export const movieDetails = createAsyncThunk(
     }
   }
 );
-
-// export const searchMovieById = async id => {
-//     const response = await fetch(
-//         `https://api.themoviedb.org/3/movie/${id}${KEY}`
-//     );
-//     const data = await response.json();
-//     return data;
-// };
-// export const searchMovieByQuery = async query => {
-//     const response = await fetch(
-//         `https://api.themoviedb.org/3/search/movie${KEY}&query=${query}`
-//     );
-//     const data = await response.json();
-//     return data.results;
-// };
-// export const searchMovieCast = async id => {
-//     const response = await fetch(
-//         `https://api.themoviedb.org/3/movie/${id}/credits${KEY}`
-//     );
-//     const data = await response.json();
-//     return data.cast;
-// };
-// export const getMovieReviews = async (movieId) => {
-//     const response = await fetch(
-//         `https://api.themoviedb.org/3/movie/${movieId}/reviews${KEY}`
-//     );
-//     const data = await response.json();
-//     return data.results;
-// };
+export const movieCast = createAsyncThunk(
+  "movies/moviecast",
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const data = await api.get(`movie/${id}/credits`);
+      return data;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
+export const movieReviews = createAsyncThunk(
+  "movies/moviereviews",
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const data = await api.get(`movie/${id}/reviews`);
+      return data;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);

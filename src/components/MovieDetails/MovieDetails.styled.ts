@@ -1,20 +1,50 @@
 import styled from "@emotion/styled";
+import { NavLink } from "react-router-dom";
 
 export const MovieSection = styled.section`
   padding: 1rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
-  gap: 10px;
+  border-bottom: 20px solid #f5c518;
+`;
+
+export const DetailsWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 `;
 
 export const MovieInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: left;
   border-radius: 5px;
   background-color: transparent;
   transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+`;
+export const Link = styled(NavLink)`
+  transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0.5rem;
+  border: 1px solid #f5c518;
+  text-transform: uppercase;
+  font-weight: 700;
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+    background-color: #f5c518;
+  }
+  &.active {
+    transform: scale(1.05);
+    background-color: #f5c518;
+  }
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-right: 10rem;
 `;
